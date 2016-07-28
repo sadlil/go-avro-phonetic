@@ -40,7 +40,7 @@ import (
 With Built in Rules:
 ```
 // Parse() tries to parse the given string
-// In case of any rule failure it throughs an erros
+// In case of failure it returns an erros
 text, err := avro.Parse("ami banglay gan gai")
 if err != nil {
     // Handle error
@@ -50,14 +50,14 @@ fmt.Println(test) // আমি বাংলায় গান গাই
 
 
 // MustParse() tries to parse the given string
-// In case of any rule failure it panics
+// In case of failure it panics
 text := avro.MustParse("ami banglay gan gai")
 fmt.Println(text) // আমি বাংলায় গান গাই
 
 ```
 
 With Custom Rules:
-`avro.ParseWith()` receives an plugable `Dictionary` interface{} to support
+`avro.ParseWith()` receives an plugable `Dictionary` `interface{}` to support
 custom parsing.
 
 `data.LoadJSON()` provides support for overloading custom dictionary from JSON,
@@ -69,7 +69,7 @@ customDictonary := []byte("custom dictonary json")
 dict, err := data.LoadJSON(customDictonary)
 if err == nil {
     text := avro.ParseWith(dict, "ami banglay gan gai")
-    fmt.Println(text)
+    fmt.Println(text) // custom parsed text
 }
 
 ```
@@ -88,14 +88,14 @@ $ go install github.com/sadlil/go-avro-phonetic/avrocli
 Parse a test:
 ```bash
 $ avrocli parse ami banglay gan gai
-আমি বাংলায় গান গাই // this could need font support for cli.
+আমি বাংলায় গান গাই  # this could need font support for cli.
 ```
 
 Parse a file:
 ```bash
-$ avrocli parse -f my_bangla.txt // this will create a my_bangla.bn.txt file
-                                 // in the same directory as the given file
-                                 // with parsed bangla texts.
+$ avrocli parse -f my_bangla.txt # this will create a my_bangla.bn.txt file
+                                 # in the same directory as the given file
+                                 # with parsed bangla texts.
 ```
 
 
