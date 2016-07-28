@@ -123,30 +123,29 @@ func (d *DefaultDictionary) Parse(text string) string {
 							match.Negative = true
 							match.Scope = match.Scope[1:]
 						}
-
-						if match.Scope == "punctuation" {
+						switch match.Scope {
+						case "punctuation":
 							if ((chk < 0 && match.Type == "prefix") ||
 								(chk >= len(fixed) && match.Type == "suffix") ||
 								d.IsPunctuation(rune(fixed[chk]))) == match.Negative {
 								replace = false
 								break
-
 							}
-						} else if match.Scope == "vowel" {
+						case "vowel":
 							if (((chk >= 0 && match.Type == "prefix") ||
 								(chk < len(fixed) && match.Type == "suffix")) &&
 								d.IsVowel(rune(fixed[chk]))) == match.Negative {
 								replace = false
 								break
 							}
-						} else if match.Scope == "consonant" {
+						case "consonant":
 							if (((chk >= 0 && match.Type == "prefix") ||
 								(chk < len(fixed) && match.Type == "suffix")) &&
 								d.IsConsonant(rune(fixed[chk]))) == match.Negative {
 								replace = false
 								break
 							}
-						} else if match.Scope == "exact" {
+						case "exact":
 							var s, e int
 							if match.Type == "suffix" {
 								s = end
@@ -161,7 +160,6 @@ func (d *DefaultDictionary) Parse(text string) string {
 								break
 							}
 						}
-
 					}
 					if replace {
 						output += rule.Replace

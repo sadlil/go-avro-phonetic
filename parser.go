@@ -9,10 +9,10 @@ func Parse(text string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	return ParseWithDictionary(data, text), nil
+	return ParseWith(data, text), nil
 }
 
-func ParseOrDie(test string) string {
+func MustParse(test string) string {
 	res, err := Parse(test)
 	if err != nil {
 		panic("Failed to parse string, cause: " + err.Error())
@@ -20,6 +20,6 @@ func ParseOrDie(test string) string {
 	return res
 }
 
-func ParseWithDictionary(d data.Dictionary, text string) string {
+func ParseWith(d data.Dictionary, text string) string {
 	return d.Parse(text)
 }
