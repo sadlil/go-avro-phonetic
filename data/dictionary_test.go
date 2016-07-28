@@ -7,13 +7,13 @@ import (
 )
 
 func TestLoad(t *testing.T) {
-	b, err := Load()
+	b, err := LoadDefaultDictionary()
 	assert.Nil(t, err)
 	assert.Equal(t, "dictionary.json", b.Meta.FileName)
 }
 
 func TestFixCase(t *testing.T) {
-	b, err := Load()
+	b, err := LoadDefaultDictionary()
 	assert.Nil(t, err)
 
 	assert.Equal(t, "hello", b.FixCase("hello"))

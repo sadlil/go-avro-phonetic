@@ -39,6 +39,12 @@ def gen():
 def compile():
     call('go install ./...')
 
+def install():
+    call('go install ./...', None, ROOT + 'avrocli')
+
+def build():
+    call('CGO_ENABED=0 go build -o build/avrocli avrocli/*go')
+
 def test():
     call('go test')
 
