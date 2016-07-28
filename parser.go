@@ -1,4 +1,4 @@
-package avro_phonetic
+package avro
 
 import (
 	"github.com/sadlil/go-avro-phonetic/data"

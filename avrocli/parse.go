@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/sadlil/go-avro-phonetic"
+	avro "github.com/sadlil/go-avro-phonetic"
 	"github.com/spf13/cobra"
 )
 
@@ -32,7 +32,7 @@ func NewParseCmd() *cobra.Command {
 }
 
 func parse(text string) {
-	text, err := avro_phonetic.Parse(text)
+	text, err := avro.Parse(text)
 	if err != nil {
 		os.Stderr.WriteString("Failed to parse text, error" + err.Error())
 	}
@@ -44,7 +44,7 @@ func parseFile(filePath string) {
 	if err != nil {
 		os.Stderr.WriteString("Failed to parse file, error" + err.Error())
 	}
-	text, err := avro_phonetic.Parse(string(data))
+	text, err := avro.Parse(string(data))
 	if err != nil {
 		os.Stderr.WriteString("Failed to parse text, error" + err.Error())
 	}
