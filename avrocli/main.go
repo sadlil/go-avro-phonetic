@@ -24,5 +24,6 @@ func NewCmdRoot() *cobra.Command {
 		},
 	}
 	rootCmd.AddCommand(NewParseCmd())
+	rootCmd.AddCommand(NewTranslateCmd())
 	return rootCmd
 }

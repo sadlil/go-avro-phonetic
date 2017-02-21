@@ -75,7 +75,7 @@ if err == nil {
 ```
 
 ## CLI
-Avro command line interface to parse data using command line.
+Avro command line interface to parse data and translate using command line.
 
 #### Install
 
@@ -98,6 +98,11 @@ $ avrocli parse -f my_bangla.txt # this will create a my_bangla.bn.txt file
                                  # with parsed bangla texts.
 ```
 
+Translate a text
+```
+$ avrocli translate ami banglay gan gai
+I sing in Bangla
+```
 
 ## Acknowledgements
  - Mehdi Hasan Khan for originally developing and maintaining Avro Phonetic,
