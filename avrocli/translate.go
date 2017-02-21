@@ -4,7 +4,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/aerokite/google-translate/pkg"
+	"github.com/aerokite/google-translate-go/pkg"
 	avro "github.com/sadlil/go-avro-phonetic"
 	"github.com/spf13/cobra"
 )
