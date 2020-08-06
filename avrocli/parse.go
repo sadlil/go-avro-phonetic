@@ -1,11 +1,12 @@
 package main
 
 import (
+	"fmt"
 	"io/ioutil"
 	"os"
 	"strings"
 
-	avro "github.com/sadlil/go-avro-phonetic"
+	"github.com/sadlil/go-avro-phonetic"
 	"github.com/spf13/cobra"
 )
 
@@ -34,25 +35,25 @@ func NewParseCmd() *cobra.Command {
 func parse(text string) {
 	text, err := avro.Parse(text)
 	if err != nil {
-		os.Stderr.WriteString("Failed to parse text, error" + err.Error())
+		fmt.Fprintln(os.Stderr, "Failed to parse text, error: " + err.Error())
 	}
-	os.Stdout.WriteString(text)
+	fmt.Fprintln(os.Stdout, text)
 }
 
 func parseFile(filePath string) {
 	data, err := ioutil.ReadFile(filePath)
 	if err != nil {
-		os.Stderr.WriteString("Failed to parse file, error" + err.Error())
+		fmt.Fprintln(os.Stderr, "Failed to parse file, error: " + err.Error())
 	}
 	text, err := avro.Parse(string(data))
 	if err != nil {
-		os.Stderr.WriteString("Failed to parse text, error" + err.Error())
+		fmt.Fprintln(os.Stderr, "Failed to parse text, error: " + err.Error())
 	}
 	destFileName := filePath[:strings.LastIndex(filePath, ".")] +
 		".bn" +
 		filePath[strings.LastIndex(filePath, "."):]
 	err = ioutil.WriteFile(destFileName, []byte(text), os.ModePerm)
 	if err != nil {
-		os.Stderr.WriteString("Failed to write text to dest file, error" + err.Error())
+		fmt.Fprintln(os.Stderr, "Failed to write text to the destination file, error: " + err.Error())
 	}
 }
