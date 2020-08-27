@@ -36,6 +36,7 @@ func parse(text string) {
 	text, err := avro.Parse(text)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "Failed to parse text, error: " + err.Error())
+		return
 	}
 	fmt.Fprintln(os.Stdout, text)
 }
@@ -44,10 +45,12 @@ func parseFile(filePath string) {
 	data, err := ioutil.ReadFile(filePath)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "Failed to parse file, error: " + err.Error())
+		return
 	}
 	text, err := avro.Parse(string(data))
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "Failed to parse text, error: " + err.Error())
+		return
 	}
 	destFileName := filePath[:strings.LastIndex(filePath, ".")] +
 		".bn" +
